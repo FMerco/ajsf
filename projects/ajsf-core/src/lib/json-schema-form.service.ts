@@ -25,9 +25,12 @@ import {
   isObject,
   JsonPointer
 } from './shared';
-import { enValidationMessages } from './locale/en-validation-messages';
-import { frValidationMessages } from './locale/fr-validation-messages';
-import { zhValidationMessages } from './locale/zh-validation-messages';
+import {
+  enValidationMessages,
+  frValidationMessages,
+  zhValidationMessages,
+} from './locale';
+
 
 export interface TitleMapItem {
   name?: string; value?: any; checked?: boolean; group?: string; items?: TitleMapItem[];
@@ -37,7 +40,9 @@ export interface ErrorMessages {
 }
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class JsonSchemaFormService {
   JsonFormCompatibility = false;
   ReactJsonSchemaFormCompatibility = false;
@@ -133,9 +138,9 @@ export class JsonSchemaFormService {
   setLanguage(language: string = 'en-US') {
     this.language = language;
     const languageValidationMessages = {
-        fr: frValidationMessages,
-        en: enValidationMessages,
-        zh: zhValidationMessages
+      fr: frValidationMessages,
+      en: enValidationMessages,
+      zh: zhValidationMessages
     };
     const languageCode = language.slice(0, 2);
 
